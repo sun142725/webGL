@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../three.js"></script>
+    <style>canvas { width: 100%; height: 100% }</style>
+</head>
+<body>
+<script>
+    //  index.html的封装，增加可读性
+
+    // 声明场景、相机、渲染器、立方体
+    var scene, camera, renderer,cube
+    //  初试化场景
+    function initScene() {
+        scene = new THREE.Scene()
+    }
+     //  初始化相机
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)  // 创建相机
+    }
+     //  初始化渲染器
+    function initRenderer(){
+        renderer = new THREE.WebGLRenderer()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        document.body.appendChild(renderer.domElement)
+    }
+    //   添加立方体到场景
+    function addCube() {
+        var geometry = new THREE.CubeGeometry(1,1,1) // 立方体的大小
+        var material = new THREE.MeshBasicMaterial({color: 0xf65a41}) // 材质 设置材质颜色
+        cube = new THREE.Mesh(geometry, material) // 创建立方体
+        scene.add(cube) //  向场景中添加立方体
+    }
+    //  渲染
+    function render(){
+        camera.position.z = 5; // 相机的位置
+        renderer.render(scene,camera)
+        cube.rotation.x += 0.1;
+        cube.rotation.y += 0.1;
+        requestAnimationFrame(render);
+    }
+    function renderStart() {
+        initScene()
+        initCamera()
+        initRenderer()
+        addCube()
+        render()
+    }
+    renderStart()
+</script>
+</body>
+</html>
