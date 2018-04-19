@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的表</title>
+    <script src="./clock.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    clock()
+
+//    var canvas
+//    canvas = document.createElement('canvas')
+//    canvas.width=200;
+//    canvas.height=200;
+//    var ctx = canvas.getContext('2d')
+//    if(ctx){
+//        function canvObject(){
+//            this.x = 0;
+//            this.y = 0;
+//            this.rotation = 0;
+//            this.borderWidth = 2;
+//            this.borderColor = '#000000';
+//            this.fill = false;
+//            this.fillColor = '#ff0000';
+//            this.update = function(){
+//                if(!this.ctx)throw new Error('你没有指定ctx对象。');
+//                var ctx = this.ctx
+//                ctx.save();
+//                ctx.lineWidth = this.borderWidth;
+//                ctx.strokeStyle = this.borderColor;
+//                ctx.fillStyle = this.fillColor;
+//                ctx.translate(this.x, this.y);
+//                if(this.rotation)ctx.rotate(this.rotation * Math.PI/180);
+//                if(this.draw)this.draw(ctx);
+//                if(this.fill)ctx.fill();
+//                ctx.stroke();
+//                ctx.restore();
+//            }
+//        };
+//        canvObject()
+//    } else {
+//        alert('您的浏览器不支持canvas')
+//    }
+document.body.appendChild(canvas)
+</script>
