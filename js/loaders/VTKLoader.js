@@ -2,9 +2,10 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
+//  构造函数
 THREE.VTKLoader = function () {
 
-	THREE.EventDispatcher.call( this );
+	THREE.EventDispatcher.call( this );  // 继承
 
 };
 

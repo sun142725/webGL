@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的表</title>
     <script src="./clock.js"></script>
+    <script src="../three.js"></script>
 </head>
 <body>
 
@@ -14,39 +15,52 @@
 </html>
 <script>
     clock()
-
-//    var canvas
-//    canvas = document.createElement('canvas')
-//    canvas.width=200;
-//    canvas.height=200;
-//    var ctx = canvas.getContext('2d')
-//    if(ctx){
-//        function canvObject(){
-//            this.x = 0;
-//            this.y = 0;
-//            this.rotation = 0;
-//            this.borderWidth = 2;
-//            this.borderColor = '#000000';
-//            this.fill = false;
-//            this.fillColor = '#ff0000';
-//            this.update = function(){
-//                if(!this.ctx)throw new Error('你没有指定ctx对象。');
-//                var ctx = this.ctx
-//                ctx.save();
-//                ctx.lineWidth = this.borderWidth;
-//                ctx.strokeStyle = this.borderColor;
-//                ctx.fillStyle = this.fillColor;
-//                ctx.translate(this.x, this.y);
-//                if(this.rotation)ctx.rotate(this.rotation * Math.PI/180);
-//                if(this.draw)this.draw(ctx);
-//                if(this.fill)ctx.fill();
-//                ctx.stroke();
-//                ctx.restore();
-//            }
-//        };
-//        canvObject()
-//    } else {
-//        alert('您的浏览器不支持canvas')
-//    }
 document.body.appendChild(canvas)
+    // 创建场景
+      var scene = new THREE.Scene()
+    //  创建相机
+    var camera
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 10000)
+        camera.position.z = 400
+    }
+    //   创建渲染器
+    var renderer
+    function initRenderer() {
+        renderer = new THREE.WebGLRenderer()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        document.body.appendChild(renderer.domElement)
+        window.addEventListener('resize', initWindowSize, false)
+    }
+    //  当屏幕缩放时初始化屏幕的宽高 调整相机的横纵比
+    function initWindowSize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    var mesh;
+    var texture;
+    function initObject(){
+        var cube = new THREE.CubeGeometry(150,150,150)
+        texture = new THREE.Texture(canvas)
+        texture.needsUpdate = true
+        var material = new THREE.MeshBasicMaterial({map: texture})
+        mesh = new THREE.Mesh(cube, material)
+        scene.add(mesh)
+    }
+    //
+    function animate() {
+        texture.needsUpdate = true;
+        mesh.rotation.x -= 0.1
+        mesh.rotation.y -= 0.1
+        renderer.render(scene, camera)
+        requestAnimationFrame(animate)
+    }
+    function startThree() {
+        initCamera()
+        initRenderer()
+        initObject()
+        animate()
+    }
+    startThree()
 </script>

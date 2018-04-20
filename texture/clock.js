@@ -18,7 +18,6 @@ function clock()
 			this.fillColor = '#ff0000';
 			this.update = function(){
 			if(!this.ctx)throw new Error('你没有指定ctx对象。');
-			console.log(this.ctx)
 			var ctx = this.ctx
 			ctx.save();
 			ctx.lineWidth = this.borderWidth;

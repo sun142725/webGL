@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>立方体</title>
+    <script src="../three.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //  场景
+    var scene = new THREE.Scene()
+    //  相机
+    var camera
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1 , 10000)
+        camera.position.z = 400
+    }
+    //  初始化渲染器
+    var renderer
+    function initRenderer() {
+        renderer = new THREE.WebGLRenderer()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        document.body.appendChild(renderer.domElement)
+    }
+    //  望场景中添加物体
+    function initObject() {
+        var geometry = new THREE.BoxGeometry( 100, 100, 100 )
+        for ( var i = 0; i < geometry.faces.length; i += 2 ) {
+
+            var hex = Math.random() * 0xffffff;
+            geometry.faces[ i ].color.setHex( hex );
+            geometry.faces[ i + 1 ].color.setHex( hex );
+
+        }
+        var meterial = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors})
+        var mesh = new THREE.Mesh(geometry, meterial)
+        scene.add(mesh)
+    }
+    function startThree() {
+        initCamera()
+        initRenderer()
+        initObject()
+        renderer.render(scene, camera)
+    }
+    startThree()
+</script>

@@ -39,7 +39,7 @@
         camera.position.z = 400;
         scene = new THREE.Scene();
 
-        var geometry = new THREE.CubeGeometry(150, 150, 150);
+        var geometry = new THREE.CubeGeometry(150, 150, 150);  // 创建一个几何体
         texture = new THREE.Texture( canvas);
         var material = new THREE.MeshBasicMaterial({map:texture});
         texture.needsUpdate = true;  // 不设置无法DHA时间
@@ -55,7 +55,6 @@
         camera.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight );
     }
-
     function animate() {
         texture.needsUpdate = true;
         mesh.rotation.y -= 0.01;
